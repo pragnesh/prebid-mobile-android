@@ -41,6 +41,9 @@ public class PrebidMobile {
     @NonNull
     private static final Map<String, String> storedBidResponses = new LinkedHashMap<>();
 
+    @Nullable
+    private static String internalId = "";
+
     public static int getTimeoutMillis() {
         return timeoutMillis;
     }
@@ -147,5 +150,13 @@ public class PrebidMobile {
 
     public static void setPbsDebug(boolean pbsDebug) {
         PrebidMobile.pbsDebug = pbsDebug;
+    }
+
+    public static String getInternalId() {
+        return internalId;
+    }
+
+    public static void setInternalId(String internalId) {
+        PrebidMobile.internalId = internalId;
     }
 }

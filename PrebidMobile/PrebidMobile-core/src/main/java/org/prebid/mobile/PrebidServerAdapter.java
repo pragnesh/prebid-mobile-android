@@ -725,7 +725,13 @@ class PrebidServerAdapter implements DemandAdapter {
                     if (!AdvertisingIDUtil.isLimitAdTracking() && !TextUtils.isEmpty(AdvertisingIDUtil.getAAID())) {
                         // put ifa
                         device.put(PrebidServerSettings.REQUEST_IFA, AdvertisingIDUtil.getAAID());
+                    } else {
+                        // put internal id as ifa
+                        device.put(PrebidServerSettings.REQUEST_IFA, PrebidMobile.getInternalId());
                     }
+                } else {
+                    // put internal id as ifa
+                    device.put(PrebidServerSettings.REQUEST_IFA, PrebidMobile.getInternalId());
                 }
 
                 // os
