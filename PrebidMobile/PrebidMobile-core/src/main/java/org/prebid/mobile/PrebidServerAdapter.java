@@ -441,7 +441,7 @@ class PrebidServerAdapter implements DemandAdapter {
                     } else if (adType.equals(AdType.INTERSTITIAL)) {
                         Context context = PrebidMobile.getApplicationContext();
                         if (context != null) {
-                            format.put(new JSONObject().put("w", context.getResources().getConfiguration().screenWidthDp).put("h", context.getResources().getConfiguration().screenHeightDp));
+                            format.put(new JSONObject().put("w", 1024).put("h", 600));
                         } else {
                             // Unlikely this is being called, if so, please check if you've set up the SDK properly
                             throw new NoContextException();
@@ -633,8 +633,8 @@ class PrebidServerAdapter implements DemandAdapter {
                         Context context = PrebidMobile.getApplicationContext();
 
                         if (context != null) {
-                            video.put("w", context.getResources().getConfiguration().screenWidthDp);
-                            video.put("h", context.getResources().getConfiguration().screenHeightDp);
+                            video.put("w", "1024");
+                            video.put("h", "600");
                         }
 
                         placementValueDefault = 5;
