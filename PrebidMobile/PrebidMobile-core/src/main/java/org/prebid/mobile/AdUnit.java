@@ -98,11 +98,11 @@ public abstract class AdUnit {
             listener.onComplete(ResultCode.INVALID_ACCOUNT_ID);
             return;
         }
-        if (TextUtils.isEmpty(configId)) {
-            LogUtil.e("Empty config id.");
-            listener.onComplete(ResultCode.INVALID_CONFIG_ID);
-            return;
-        }
+//        if (TextUtils.isEmpty(configId)) {
+//            LogUtil.e("Empty config id.");
+//            listener.onComplete(ResultCode.INVALID_CONFIG_ID);
+//            return;
+//        }
         if (PrebidMobile.getPrebidServerHost().equals(Host.CUSTOM)) {
             if (TextUtils.isEmpty(PrebidMobile.getPrebidServerHost().getHostUrl())) {
                 LogUtil.e("Empty host url for custom Prebid Server host.");
