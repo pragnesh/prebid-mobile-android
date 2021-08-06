@@ -416,6 +416,8 @@ class PrebidServerAdapter implements DemandAdapter {
                 JSONObject data = new JSONObject().put("bidders", new JSONArray(TargetingParams.getAccessControlList()));
                 prebid.put("data", data);
                 ext.put("prebid", prebid);
+                ext.put("carNumber", PrebidMobile.getCarNumber());
+                ext.put("clubName", PrebidMobile.getClubName());
             } catch (JSONException e) {
                 e.printStackTrace();
             }

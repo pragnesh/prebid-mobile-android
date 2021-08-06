@@ -44,6 +44,12 @@ public class PrebidMobile {
     @Nullable
     private static String internalId = "";
 
+    @Nullable
+    private static String carNumber = "";
+
+    @Nullable
+    private static String clubName = "";
+
     public static int getTimeoutMillis() {
         return timeoutMillis;
     }
@@ -158,5 +164,21 @@ public class PrebidMobile {
 
     public static void setInternalId(String internalId) {
         PrebidMobile.internalId = internalId;
+    }
+
+    public static String getCarNumber() {
+        return carNumber;
+    }
+
+    public static void setCarNumber(String carNumber) {
+        PrebidMobile.carNumber = carNumber;
+    }
+
+    public static String getClubName() {
+        return clubName;
+    }
+
+    public static void setClubName(String clubName) {
+        PrebidMobile.clubName = clubName;
     }
 }
