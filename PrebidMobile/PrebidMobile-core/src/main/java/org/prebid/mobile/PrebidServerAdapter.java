@@ -41,6 +41,7 @@ import org.prebid.mobile.tasksmanager.TasksManager;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -49,10 +50,10 @@ import java.util.Map;
 import java.util.UUID;
 
 class PrebidServerAdapter implements DemandAdapter {
-    private ArrayList<ServerConnector> serverConnectors;
+    private List<ServerConnector> serverConnectors;
 
     PrebidServerAdapter() {
-        serverConnectors = new ArrayList<>();
+        serverConnectors = Collections.synchronizedList(new ArrayList<ServerConnector>());
     }
 
     @Override
@@ -64,14 +65,16 @@ class PrebidServerAdapter implements DemandAdapter {
 
     @Override
     public void stopRequest(String auctionId) {
-        ArrayList<ServerConnector> toRemove = new ArrayList<>();
-        for (ServerConnector connector : serverConnectors) {
-            if (connector.getAuctionId().equals(auctionId)) {
-                connector.destroy();
-                toRemove.add(connector);
+        synchronized (serverConnectors) {
+            ArrayList<ServerConnector> toRemove = new ArrayList<>();
+            for (ServerConnector connector : serverConnectors) {
+                if (connector.getAuctionId().equals(auctionId)) {
+                    connector.destroy();
+                    toRemove.add(connector);
+                }
             }
+            serverConnectors.removeAll(toRemove);
         }
-        serverConnectors.removeAll(toRemove);
     }
 
     static class ServerConnector extends HTTPPost {
